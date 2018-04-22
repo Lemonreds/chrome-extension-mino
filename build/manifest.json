@@ -1,0 +1,22 @@
+{
+  "name": "New Tab - Mino",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "a cool new tab extension for chrome.",
+  "icons": {
+    "16": "./static/icons/icon-16.png",
+    "128": "./static/icons/icon-128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "chrome://favicon/",
+    "tabs",   
+    "bookmarks",
+    "storage",
+    "http://*/*",
+    "https://*/*"
+  ], 
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'" 
+}

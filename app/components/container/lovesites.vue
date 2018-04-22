@@ -1,0 +1,75 @@
+<template> 
+    <div class="loves"
+        v-if="lovesites && lovesites.status"
+    >      
+
+        <div class="site"
+            v-for="site in sites"
+            :key="site.name">    
+          <a :href="site.url" 
+            target="__blank">
+            <img class="icon" :src="site.icon">          
+          </a>          
+        </div>
+    </div>
+</template>
+
+<script>
+import { getLovesites } from "../../api/lovesites.js"
+import { mapGetters } from 'vuex'
+
+
+export default {
+    data() {
+        return {
+            visilbe: true,
+            sites: []            
+        }
+    },
+    computed:{
+         ...mapGetters([     
+            'lovesites'
+        ])       
+    },   
+    created() {          
+        getLovesites.then(sites => {
+            this.sites = sites
+        })       
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.loves {
+    width: 640px;
+    margin-top: 40px;
+    
+    display: flex;
+
+    &>.site{
+        display: inline-block;
+        width: 72px;
+        height: 72px;
+        margin-right: 18px;
+        padding: 10px 0;
+        border: 1px solid #eee;
+        background: rgba(255,255,255,.84);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;   
+        border-radius: 4px;     
+        & >a{
+
+            &>.icon{
+                width: 44px;
+                height: 44px;
+            }   
+            &:hover{
+                opacity: .74;
+            }         
+        }
+    }
+}
+ 
+</style>
