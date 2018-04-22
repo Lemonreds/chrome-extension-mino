@@ -85,13 +85,14 @@ export default {
                     height: 20px;
                     color: #252b32;
                 }
-            }
-            &:hover{
-                    border: 1px solid #eee;
-            }  
+                &:hover{
+                    opacity: .84;
+                    &>span{
+                        color: #000;
+                    }
+                }
+            }           
         }
-    }
-   
+    }   
 }
-
 </style>
