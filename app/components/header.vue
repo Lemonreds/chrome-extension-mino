@@ -68,12 +68,16 @@ export default {
         ])       
     },  
     methods:{
-        handler(name){                        
-            this.$set(this.dialog,name,!this.dialog[name])
+        handler(name){                
+            for(let type in this.dialog){
+                type === name ? 
+                this.$set(this.dialog,type,!this.dialog[type]) : 
+                this.$set(this.dialog,type,false)
+            }              
         },
         closeDialog(name){
             this.$set(this.dialog,name,false)
-        }      
+        }       
     }
 }
 </script>

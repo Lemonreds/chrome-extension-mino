@@ -31,14 +31,18 @@
 @keyframes fadeRight
     from
       transform: translateX(420px)
+      opacity: 0
     to
       transform: translateX(0)  
+      opacity: 1
 
 @keyframes fadeLeft
     from
       transform: translateX(0)
+      opacity: 1
     to
       transform: translateX(420px)  
+      opacity: 0
 
 
 
@@ -81,3 +85,19 @@
   animation-name: top-out
   animation-duration: 0.3s  
 
+  //
+    
+@keyframes to-right
+    from
+      transform: translateX(-20px)
+      opacity: .4
+    to
+      transform: translateX(0)     
+      opacity: 1
+
+
+.to-right
+  transform: translate(-400px)
+  animation-fill-mode: forwards
+  animation-name: to-right
+  animation-duration: 0.3s

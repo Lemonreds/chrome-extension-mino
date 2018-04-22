@@ -1,7 +1,9 @@
 <template>
     <div>
           <h3 class="title">Background</h3> 
-            <div class="item">       
+            <div class="item"
+                :style="getDelayAnimation"
+            >       
                 <span>Bing</span>
                 <Choose 
                 v-if='bing'
@@ -59,6 +61,12 @@ export default {
             this.bingHanlder(0,false)
             // change to color 
             this.$store.dispatch('modifyColor',color)
+        },        
+        getDelayAnimation(){           
+            console.log(66)
+            return {
+                'animationDelay' :  '0.6s'
+            }
         }
     }
 }
@@ -70,7 +78,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 44px;
+    height: 22px;
     margin: 2px 0;
     & >li{
         display: inline-block;

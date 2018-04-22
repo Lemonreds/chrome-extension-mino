@@ -24,6 +24,7 @@
             v-show="gallery"
             :images = "images"
             @setImage ="setImage"
+            @overlay = "opGallery"
         />
     </footer>
   

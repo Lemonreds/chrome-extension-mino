@@ -2,7 +2,7 @@
     
     <div class="item">   
         <i 
-            @click="settingHanlder()"
+            @click="settingHanlder"
             class="material-icons"
             >{{option.icon}}</i>
       <transition name="top">
@@ -14,10 +14,14 @@
               :featrues = "featrues"
             />     
             <Background/>
+            
+            <More/>
             <span 
                 class="close"
                 @click.stop="close"            
-            >Dismiss.</span>    
+            >Dismiss.</span>   
+
+
         </div>  
       </transition>
     </div> 
@@ -27,6 +31,7 @@
 <script>
 import Featrues from "./featrues.vue"
 import Background from './background.vue'
+import More from './more.vue'
 import { mapGetters } from 'vuex'
 
 
@@ -42,7 +47,7 @@ export default {
     }
   },
   components: {
-    Featrues,Background
+    Featrues,Background,More
   },
   computed:{
       ...mapGetters(['featrues'])

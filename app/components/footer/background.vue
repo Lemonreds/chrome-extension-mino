@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="background"
-            v-if="bing && bing.status"
+            v-if="bing && bing.status"            
             :style="backgroundImage"/>
     <div class="background" 
             v-else :style="setBackgroundColor"     
