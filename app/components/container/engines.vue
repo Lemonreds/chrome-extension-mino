@@ -47,7 +47,9 @@ export default {
   height: 200px;
   margin-top: -100px;
   margin-left: -210px;
-
+  & >p{
+    color: rgba(0,0,0,.1)
+  }
   & > .group {
     margin: 26px 0;
     & > .item {

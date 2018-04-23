@@ -10,12 +10,10 @@
             v-if="visible"
             class="setting dialog">      
            
-            <Featrues
-              :featrues = "featrues"
-            />     
-            <Background/>
-            
+            <Featrues/>     
+            <Background/>            
             <More/>
+            
             <span 
                 class="close"
                 @click.stop="close"            
@@ -32,8 +30,6 @@
 import Featrues from "./featrues.vue"
 import Background from './background.vue'
 import More from './more.vue'
-import { mapGetters } from 'vuex'
-
 
 export default {
   props: {
@@ -48,9 +44,6 @@ export default {
   },
   components: {
     Featrues,Background,More
-  },
-  computed:{
-      ...mapGetters(['featrues'])
   },
   methods: {
     close() {

@@ -44,7 +44,7 @@ export default {
                 },
                 bookmark:{
                     name : 'bookmark',
-                    icon : 'bookmark'
+                    icon : 'view_carousel'
                 },
                 setting:{
                     name : 'setting',

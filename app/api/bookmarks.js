@@ -1,6 +1,7 @@
 
 /**
  * 获取整个书签树
+ * @return {Promise}
  */
 const getRoot = new Promise((resolve, reject) => {
     chrome.bookmarks.getTree(root => {
@@ -10,6 +11,7 @@ const getRoot = new Promise((resolve, reject) => {
 
 /**
  * 获取一级分类
+ * @return {Promise}
  */
 export const getCategories = getRoot.then(root => {
 
@@ -28,8 +30,9 @@ export const getCategories = getRoot.then(root => {
 })
 
 /**
- * 获取分类下所有书签
+ * 根据分类id  获取分类下所有书签
  * @param {string} id
+ * @return {Promise}
  */
 export const getBookMarksById = id => {
 

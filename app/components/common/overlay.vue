@@ -23,7 +23,7 @@ export default {
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.84);
-    z-index: 9;
+    z-index: 8;
 }
 
 </style>

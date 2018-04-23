@@ -85,19 +85,15 @@
   animation-name: top-out
   animation-duration: 0.3s  
 
-  //
-    
-@keyframes to-right
+@keyframes fadeIn
     from
-      transform: translateX(-20px)
-      opacity: .4
+      transform: scale(0.5)  
+      opacity: 0.4
     to
-      transform: translateX(0)     
-      opacity: 1
+      transform: scale(1) 
+      opacity: 1    
 
-
-.to-right
-  transform: translate(-400px)
+.fadeIn
   animation-fill-mode: forwards
-  animation-name: to-right
-  animation-duration: 0.3s
+  animation-name: fadeIn
+  animation-duration: 0.3s  

@@ -1,7 +1,7 @@
 <template>
     <span class="choose" 
-        @click="modify()"
-        :class="status ? styles.active : styles.inactive">
+          @click="modify"
+         :class="initial ? styles.active : styles.inactive">
         <span class="cirlce"/>
     </span>
 </template>
@@ -9,13 +9,13 @@
 <script>
 export default {
   props:{
-      initial:{},
+      initial:{
+          type: Boolean,
+          default: true
+      },
       id:{       
           default: 0
       }
-  },
-  created(){
-      this.status = this.initial 
   },
   data(){
      return{    
@@ -28,12 +28,8 @@ export default {
   },  
   methods:{
       modify(){
-          this.status = !this.status
-          // 向父组件传递事件
-          this._handlerEmit()
-      },
-      _handlerEmit(){
-          this.$emit('hanlder', this.id,this.status)
+           // 向父组件传递事件
+          this.$emit('hanlder',this.id)
       }
   }
 }

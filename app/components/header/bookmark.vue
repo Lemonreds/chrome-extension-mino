@@ -113,7 +113,7 @@ export default {
 
         this.all.forEach(cate=>{
             cate.forEach(bookmark=>{
-                if(bookmark.title.indexOf(val)!=-1){
+                if(bookmark.title.toLowerCase().indexOf(val)!=-1){
                   this.search.push(bookmark)
                 }
             })

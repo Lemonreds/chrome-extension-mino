@@ -1,80 +1,98 @@
 /**
  * vuex store 
+ * 主要用于暂存设置项的值
+ * 用于组件间通信 及时通知组件变化
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as Setting from '../api/setting.js'
 
-
-
-// 默认设置
 const state = {
-    featrues: null,
-    bing: null,
-    color: null
+    featrues: null, // 包括application bookmark lovasites 的设置  application{ name "application", status true
+                    //                                                          storeKey "SETTING_APPLICATION"}
+    bing: null, // 必应背景设置项 {name: "bing", status: false}
+    color: null //纯色背景设置  #987a3b
 }
-// 初始化
+
+
+/**
+ * 初始化数据
+ */
 Setting.fetchFeatures.then(data => {
     state.featrues = data
-})    
-Setting.fetchBing.then(v => {
-    state.bing = v
-}) 
-Setting.fetchColor.then(v=>{
-    state.color = v
+})
+Setting.fetchBing.then(data => {
+    state.bing = data
+})
+Setting.fetchColor.then(data => {
+    state.color = data
 })
 
 // getters
 const getters = {
-    featrues: state => state.featrues ,
-    application: state => state.featrues ? state.featrues.application : null,
+    featrues: state => state.featrues,
+    application: state => state.featrues ? state.featrues.application : null, // 防止空值异常
     bookmark: state => state.featrues ? state.featrues.bookmark : null,
     lovesites: state => state.featrues ? state.featrues.lovesites : null,
     bing: state => state.bing,
     color: state => state.color
 }
 
-
+// mutation 的类型
 const types = {
     SET_BING_VALUE: 'SET_BING_VALUE',
     SET_FEATRUES_VALUE: 'SET_FEATRUES_VALUE',
-    SET_COLOR: 'SET_COLOR' 
+    SET_COLOR: 'SET_COLOR'
 }
-
+// mutation
 const mutations = {
+    // 开启/关闭 必应背景图片
     [types.SET_BING_VALUE](state, value) {
         state.bing.status = value
     },
-    [types.SET_FEATRUES_VALUE](state,{type,value}){
-        state.featrues[type].status = value
+    // 开启/关闭 Featrues 设置
+    [types.SET_FEATRUES_VALUE](state, {type,status}) {
+        state.featrues[type].status = status
     },
-    [types.SET_COLOR](state,value){
+    // 设置颜色值
+    [types.SET_COLOR](state, value) {
         state.color = value
-    } 
-}
-const actions = {
-
-    // 修改 featrues
-    modifyFeatrues({commit,state},{type,value}){       
-        commit(types.SET_FEATRUES_VALUE,{type,value})
-        Setting.modify(type, value)  
-    },  
-    // 修改背景图片
-    moidfyBing({commit,state},{type,value}) {
-        // set value 
-        commit(types.SET_BING_VALUE,value)
-        // local store
-        Setting.modify(type,value)    
-    },
-    // 设置pure背景颜色
-    modifyColor({commit,state},value){        
-        commit(types.SET_COLOR,value)
-        Setting.setColor(value)
     }
-    
+}
+const actions = {    
+    /**
+     * 修改 featrues
+     * @param {String} type [application/bookmark/setting]
+     * @param {Boolean} status 
+     */
+    modifyFeatrues({ commit, state}, {type,status}) {
+        // 修改vuex的值
+        commit(types.SET_FEATRUES_VALUE, { type, status })
+        // 存储新的数据
+        Setting.modify(type, status)
+    },
+    /*
+    * 修改 Bing背景图片
+    * @param {Boolean} status 
+    */
+    moidfyBing({ commit, state }, value) { 
+        // 修改vuex的值
+        commit(types.SET_BING_VALUE, value)
+        // 存储新的数据
+        Setting.modify('bing', value)
+    },
+    // 设置背景颜色
+    modifyColor({ commit, state }, value) {
+        // 修改vuex的值
+        commit(types.SET_COLOR, value)   
+        // 同时更新bing 设置为不可见
+        commit(types.SET_BING_VALUE, false)  
+        // 存储新的数据
+        Setting.setColor(value)      
+    }
 }
 
-
+// vuex 应用
 Vue.use(Vuex)
 export default new Vuex.Store({
     state,

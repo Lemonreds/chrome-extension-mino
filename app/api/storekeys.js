@@ -1,5 +1,9 @@
-const KEYS = {
 
+/**
+ *  本地存储的键 
+ */
+const KEYS = {
+    // featrues key
     BACKGROUND: 'BACKGROUND',
     ENGINIE: 'ENGINIE',
     LOVESITES: 'LOVESITES',
@@ -13,4 +17,3 @@ const KEYS = {
 }
 
 export default KEYS
-

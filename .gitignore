@@ -1,6 +1,6 @@
 node_modules/
 npm-debug.log
 .vscode/
-package-lock.json
+package-lock
 temp
 .tmp

@@ -1,6 +1,24 @@
 import * as store from './localstore.js'
 import KEYS from './storekeys'
 
+
+// 图片对象的具体信息
+/**
+ * id 
+ * url: 具体路径
+ * date: 日期 如20180422
+ * copyright: 图片信息和作者
+ */
+class Image {
+    constructor(id, url, date, copyright) {
+        this.id = id
+        this.url = url
+        this.date = date
+        this.copyright = copyright
+    }
+}
+
+
 /**
  * format : 默认返回JSON格式
  * idx:   -1最多获取到明天,1 今天
@@ -13,23 +31,26 @@ let defaults = {
 }
 
 /**
- * 返回数组
+ * 返回 Promse.resolve(value)   
+ * value: 对象数组 获取失败返回 []
+ *        对象包含图片信息 
  */
 const getBingImages = options => {
 
     let xhr = new XMLHttpRequest(),
         data, config, result, id
 
+    // 合并 配置
     if (typeof options === 'undefined') {
         config = defaults
     } else {
         config = {}
         Object.assign(config, defaults, options)
     }
-
+    // open ajax
     xhr.open('GET', `http://cn.bing.com/HPImageArchive.aspx?format=${config.format}&idx=${config.idx}&n=${config.n}`, true)
     xhr.send(null)
-    // handler
+    // 回调函数
     return new Promise((resolve, reject) => {
         xhr.onreadystatechange = () => {
             if (xhr.readyState == 4) {
@@ -40,16 +61,15 @@ const getBingImages = options => {
                     id = 0
 
                     data.images.forEach(image => {
-                        result.push({
-                            id: id++,
-                            url: `https://cn.bing.com${image.url}`,
-                            date: image.enddate,
-                            copyright: image.copyright
-                        })
+                        result.push(
+                            new Image(id++, `https://cn.bing.com${image.url}`, image.enddate, image.copyright))
                     })
+                    // 根据日期 顺排序
                     resolve(result.reverse())
                 } else {
-                    reject('ERROR.')
+                    // 错误 返回空数组
+                    console.log('internet error / [bing]')
+                    reject([])
                 }
             }
         }
@@ -58,20 +78,14 @@ const getBingImages = options => {
 
 
 /**
- * 保存bing图片的url到本地存储
- * @param {string} url 
+ * 获取上一次设置的壁纸image对象
+ * @return {Image}
  */
-export const saveBgr = url => {
-    store.storeData({
-        [KEYS.BACKGROUND]: url
-    })
-}
-
-
-const getBgr = () => {
+const getBackground = () => {
     return new Promise((resolve, reject) => {
         store.getData(KEYS.BACKGROUND).then(data => {
             if (store.isEmptyData(data)) {
+                // 获取失败返回 undefined
                 resolve(undefined)
             } else {
                 resolve(data[KEYS.BACKGROUND])
@@ -80,21 +94,45 @@ const getBgr = () => {
     })
 }
 
+
+/**
+ *  保存 image对象到本地存储
+ * @param {Image} image 
+ */
+export const saveBackground = image => {
+    store.storeData({
+        [KEYS.BACKGROUND]: image
+    })
+}
+
+
+/**
+ * 获取bing图片 8张
+ * 同时从本地存储获取 壁纸 
+ * 获取失败则设置最新的图片为壁纸
+ * 
+ * @return {Promise.resolve(Image,Array[Images])}
+ */
 export const getBing = new Promise((resolve, reject) => {
 
     let background
 
-    getBgr().then(data => {
+    getBackground().then(data => {
         background = data
     })
- 
+
     getBingImages({
         n: 8
-    }).then(images => {       
+    }).then(images => {
         // 如果没有默认的背景图片设置     
         if (typeof background === 'undefined') {
-            background = images[7]            
+            background = images[7]
         }
-        resolve({background,images })
+        resolve({
+            background,
+            images
+        })  
     })
+
+ 
 })

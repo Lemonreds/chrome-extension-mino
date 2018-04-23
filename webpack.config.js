@@ -1,21 +1,31 @@
 const webpack = require('webpack'),
     path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin')
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    CleanPlugin = require('clean-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 
 
 const config = {
-    entry: path.join(__dirname, 'app/index.js'),
+    entry: {
+        tab: path.join(__dirname, 'app/tab.js'),
+        popup: path.join(__dirname, 'app/popup.js')
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.join(__dirname, './build')
     },
     module: {
         rules: [{
             test: /\.vue$/,
             loader: 'vue-loader'
+        }, {
+            test: /\.js$/,
+            use: {
+                loader: 'babel-loader'
+            },
+            exclude: /node_modules/
         }, {
             test: /\.(scss|sass)$/,
             use: ExtractTextPlugin.extract({
@@ -52,15 +62,31 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title:'New Tab'
+            title: 'New Tab',
+            chunks: ['tab'],
+            filename: 'tab.html'
         }),
-        new ExtractTextPlugin('style.css'),
+        new HtmlWebpackPlugin({
+            title: 'Popup',
+            chunks: ['popup'],
+            filename: 'popup.html'
+        }),
+        new ExtractTextPlugin('style.css')
     ]
 }
 
 if (isDev) {
     config.devtool = '#cheap-module-eval-source-map'
-}
 
+} else {
+    config.plugins.push(
+        new CleanPlugin('./build', {
+            // 一般不更新图标 所以不删除fonts
+            //
+            exclude: ['manifest.json','static', 'fonts']
+        }), 
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin())
+}
 
 module.exports = config

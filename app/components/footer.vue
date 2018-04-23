@@ -9,7 +9,7 @@
         </div>
         <div class="item"
                 v-if="bing && bing.status">   
-            <i @click="getBackgroundInfo"
+            <i @click="opImageInfo"
                 class="material-icons">error_outline</i>
             <Info
                 :show="info"
@@ -23,8 +23,7 @@
         <Gallery 
             v-show="gallery"
             :images = "images"
-            @setImage ="setImage"
-            @overlay = "opGallery"
+            @setImage ="setImage"          
         />
     </footer>
   
@@ -62,10 +61,12 @@ export default {
   }, 
   methods:{
       opGallery(){
-          this.gallery = !this.gallery
+          this.info = false
+          this.gallery = !this.gallery 
       },    
-      getBackgroundInfo(){
-          this.info = !this.info
+      opImageInfo(){
+          this.gallery = false
+          this.info = !this.info 
       },
       setImage(image){
           // set this.
@@ -74,11 +75,11 @@ export default {
           this.$set(this.background,"copyright",image.copyright)
           // modify vuex
           this.$store.dispatch('moidfyBing',{
-                type: 'bing',
+                name: 'bing',
                 value: true
           })
           // local store
-          BingAPI.saveBgr(image)
+          BingAPI.saveBackground(image)
       }
   }
 }
@@ -89,11 +90,10 @@ export default {
     width: 100%;
     height: 60px;      
     padding: 16px 24px 24px 24px;
-
+    
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-
     & >.item{
         position: relative;
         display: inline-block;
@@ -103,8 +103,5 @@ export default {
         text-align: center;
         cursor: pointer;       
     }
-
-
 }
-
 </style>

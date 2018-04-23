@@ -1,6 +1,6 @@
 <template> 
     <div class="search">      
-        <div  class="icon"
+        <div  class="icon "
                 @click="dialogVisible">
             <img 
                 :src="current.icon"

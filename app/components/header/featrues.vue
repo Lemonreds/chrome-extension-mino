@@ -18,27 +18,20 @@
 
 <script>
 import Choose from "../common/choose.vue"
-export default {
-    props:{
-        featrues :{
-            type : Object,
-            defaults: {}
-        }
+import {mapGetters} from 'vuex'
+
+export default {   
+    computed:{
+      ...mapGetters(['featrues'])
     },
     methods:{        
-        featruesHanlder(idx, status) {
-            let item = this.featrues[idx]       
-            this.$store.dispatch('modifyFeatrues',{type: item.name, value: status})     
+        featruesHanlder(index) {
+            let item = this.featrues[index]   
+            this.$store.dispatch('modifyFeatrues',{type: item.name, status: !item.status})     
         }  
     },
     components:{
         Choose
     }
-  
 }
 </script>
-
-
-<style lang="scss" scoped>
-
-</style>

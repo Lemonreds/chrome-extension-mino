@@ -1,5 +1,8 @@
+
 /**
+ * 
  * 谷歌应用
+ * 
  */
 const path = './static/google-app/'
 

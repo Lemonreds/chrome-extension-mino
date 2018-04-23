@@ -1,9 +1,7 @@
 <template>
     <div>
           <h3 class="title">Background</h3> 
-            <div class="item"
-                :style="getDelayAnimation"
-            >       
+            <div class="item">       
                 <span>Bing</span>
                 <Choose 
                 v-if='bing'
@@ -42,7 +40,7 @@ export default {
         Choose
     }, 
     computed:{              
-        ...mapGetters(['bing'])
+        ...mapGetters(['bing']),
     },    
     methods:{
         background(color){
@@ -50,25 +48,13 @@ export default {
                 background : color 
             }
         },
-        bingHanlder(id,status){     
-            this.$store.dispatch('moidfyBing',{
-                type: 'bing',
-                value: status
-            })
+        bingHanlder(id){     
+            this.$store.dispatch('moidfyBing',!this.bing.status)
         },
         colorHanlder(color){
-            //reset bing 
-            this.bingHanlder(0,false)
-            // change to color 
             this.$store.dispatch('modifyColor',color)
-        },        
-        getDelayAnimation(){           
-            console.log(66)
-            return {
-                'animationDelay' :  '0.6s'
-            }
-        }
-    }
+        }       
+    }    
 }
 </script>
 
@@ -78,13 +64,12 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 22px;
     margin: 2px 0;
     & >li{
         display: inline-block;
         width: 22px;
         height: 22px;
-        margin: 0 4px;
+        margin: 0 4px 4px 4px;
         border: 1px solid #eee;
         border-radius: 2px;
     }

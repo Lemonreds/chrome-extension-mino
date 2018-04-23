@@ -28,7 +28,6 @@ export default {
     },
     computed:{
         formatDate: function (){    
-
             return this.background.date
         },
         formatCopyRihgt: function (){
@@ -53,6 +52,7 @@ export default {
     background: #fff;
     border: 1px solid #eee;
     border-radius: 4px;
+    z-index: 99;
     & >img{    
         width: 100%;
         height: 34vh;

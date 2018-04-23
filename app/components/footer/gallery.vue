@@ -2,21 +2,24 @@
   <transition name="scale">
     <div class="gallery">
         <div class="bing">        
-            <span>Images from Bing.</span>
+             <span>Images from</span>
+             <a target="_blank" href="https://bing.com/">Bing daily wallpaper.</a>
         </div>
 
         <ul class="images">
             <li class="item"
                 v-for="image in images"
                 :key="image.name"
-                :style="backgroundImage(image.url)"
-            >             
-                <i  @click="setImage(image)"
-                     class="material-icons">photo
-                </i>
+                :style="backgroundImage(image.url)">      
+
+
+               <span class="options">
+                    <i @click="download(image.url)"  class="material-icons">file_download</i>
+                    <i @click="setImage(image)"  class="material-icons">photo</i>    
+               </span>
                 
-                <span>{{image.date}}</span>
-                <p> {{image.copyright}}</p>
+                <span class="date">{{image.date}}</span>
+                <p class="copyright"> {{image.copyright}}</p>
                  
             </li>
         </ul>  
@@ -25,6 +28,8 @@
 </template>
 
 <script>
+
+import download from '../../api/download.js'
 
 export default { 
   props:{
@@ -41,6 +46,9 @@ export default {
       },
       setImage: function(image){
           this.$emit("setImage",image)
+      },
+      download: function(url){
+          download(url)    
       }
   }
 }
@@ -61,11 +69,20 @@ export default {
     color: #3b444f;
     box-shadow: 0 2px 10px rgba(0,0,0,.2);    
     border-radius: 4px;  
+    z-index: 99;
 }
 .bing{
     font-size: 18px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     text-align: center;
+    & >span{
+        font-size: 14px
+    }
+    & >a{
+        font-size: 14px;
+        text-decoration: underline;
+        color: rgba(0, 0, 0, 1)
+    }
 }
 .images{    
     display: flex;
@@ -85,12 +102,12 @@ export default {
         cursor: pointer;
         position: relative;
         transition: all .2s ease-in-out;
-        &>span{
+        &>.date{
            line-height: 162px;
            color: #fff;
            opacity: 0;
         }
-        &>p{       
+        &>.copyright{       
             position: absolute;
             bottom: 10px;
             left: 0;
@@ -101,19 +118,19 @@ export default {
             color: #fff;
             opacity: 0
         }
-        &>i{
+        &>.options{
             position: absolute;
             right: 8px;
             top: 8px;
-            width: 20px;
-            height: 20px;
+            display: inline-block;
+            height: 18px;
             color: #fff;
             opacity: 0;
-            z-index: 9;
+            z-index: 9;           
         }
         &:hover{
             opacity: .91;
-            &>span ,&>p,&>i{
+            &>.date ,&>.copyright,&>.options{
                 opacity: 1;
             }
         }

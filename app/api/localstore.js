@@ -1,3 +1,10 @@
+/*
+ * 数据存储结构 
+ * {
+ *  key : value
+ * }
+ */
+ 
 
 /**
  * 存储数据 
@@ -10,6 +17,7 @@ export const storeData = data => {
 /**
  * 获取数据
  * @param {string} key 
+ * @return {Promise}
  */
 export const getData = key => {
 
@@ -31,6 +39,7 @@ export const clearAll = () => {
 
 /**
  * 获取所有本地存储
+ * @return {Promise}
  */
 export const getAll = () => {
     return getData(null)
@@ -39,6 +48,7 @@ export const getAll = () => {
 /**
  * 判断是否是空数据
  * @param {Object} obj 
+ * @return {Boolean} 
  */
 export const isEmptyData = obj => {
 
@@ -50,3 +60,4 @@ export const isEmptyData = obj => {
     }
     return false
 }
+

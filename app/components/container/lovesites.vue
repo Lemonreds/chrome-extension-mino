@@ -1,17 +1,18 @@
 <template> 
+     
     <div class="loves"
         v-if="lovesites && lovesites.status"
-    >      
-
-        <div class="site"
+    >        
+        <div class="site fadeIn"
             v-for="site in sites"
             :key="site.name">    
           <a :href="site.url" 
             target="__blank">
             <img class="icon" :src="site.icon">          
           </a>          
-        </div>
+        </div>  
     </div>
+
 </template>
 
 <script>
@@ -45,7 +46,8 @@ export default {
     margin-top: 40px;
     
     display: flex;
-
+    flex-wrap: wrap;
+    z-index: 4;
     &>.site{
         display: inline-block;
         width: 72px;

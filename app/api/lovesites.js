@@ -2,8 +2,9 @@ import * as store from './localstore.js'
 import KEYS from './storekeys'
 
 const path = './static/sites/'
-
-// 默认的常用地址
+/**
+ * 默认的 lovesites
+ */
 const defaults = [
     {
         name: "Youtube",
@@ -42,7 +43,8 @@ const defaults = [
     }
 ]
 /**
- * 获取所有常去的网站
+ * 获取所有lovesites
+ * @return {Array}
  */
 export const getLovesites = store.getData(KEYS.LOVESITES).then(data => {
 

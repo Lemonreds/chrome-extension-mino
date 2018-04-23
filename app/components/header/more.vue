@@ -3,7 +3,7 @@
         <h3 class="title">More</h3>
         <div class="more">            
             <span>mino built by vuejs,</span>
-            <a target="_blank" href="https://github.com/Lemonreds/chrome-extension-mino">see more.</a>
+            <a target="_blank" href="https://github.com/Lemonreds/chrome-extension-mino">@see more.</a>
         </div>
     </div>
 </template>
@@ -21,6 +21,7 @@ export default {
     color: rgba(0,0,0,.74); 
     line-height: 18px;
     &>a{
+        text-decoration: underline;
         color: rgba(0,0,0,1)
     }    
 }

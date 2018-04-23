@@ -1,7 +1,9 @@
 import * as store from './localstore.js'
 import KEYS from './storekeys.js'
 
-
+/**
+ * 默认设置
+ */
 export const defaluts = {
     application: {
         name: 'application',
@@ -19,6 +21,9 @@ export const defaluts = {
         storeKey: KEYS.SETTING_LOVESITES
     }
 }
+/**
+ * bing设置
+ */
 export const bing = {
     name: 'bing',
     status: true
@@ -30,6 +35,7 @@ export const bing = {
  * 需要指定一个默认值 写入本地存储
  * @param {string} key 
  * @param {Object} value 
+ * @return {Promise}
  */
 function fetch(key, value) {
     return new Promise((resolve, reject) => {
@@ -63,9 +69,13 @@ export const fetchFeatures = Promise.all([fetchApplication, fetchBookmark, fetch
 })
 
 
-
-export const modify = (name, value) => {
-    switch (name) {
+/**
+ * 修改设置项
+ * @param {string} type 
+ * @param {boolean} value 
+ */
+export const modify = (type, value) => {
+    switch (type) {
         case 'application':
             set(KEYS.SETTING_APPLICATION, value, defaluts.application)
             break;
@@ -83,11 +93,17 @@ export const modify = (name, value) => {
     }
 }
 
-function set(key, value, source) {
-    if (typeof value === 'boolean') {
+/**
+ * 
+ * @param {String} key 
+ * @param {Boolean} value 
+ * @param {Object} source 
+ */
+function set(key, status, source) {
+    if (typeof status === 'boolean') {
 
         Object.assign(source, {
-            status: value
+            status: status
         })
         store.storeData({
             [key]: source
@@ -96,12 +112,30 @@ function set(key, value, source) {
 }
 
 
-//colors
-
-export const colors = ['#5bc0de','#337ab7','#f0ad4e','#5cb85c','#cdbfe3','#d9534f']
+/**
+ * 默认颜色
+ */
+export const colors = ['#3b5998','#5bc0de','#5f7ec1','#2b6b73','#337ab7','#f0ad4e',
+                        '#3b987a','#cdbfe3','#d9534f', '#983b59','#987a3b','#88983b','#674a34']
+                        
+/**
+ * 存储颜色到本地存储
+ * @param {String} value 
+ */
 export const setColor = value => {
     store.storeData({
         [KEYS.SETTING_COLOR] : value
     })
 }
+/**
+ * 获取本地存储的颜色
+ * @return {String}
+ */
 export const fetchColor = fetch(KEYS.SETTING_COLOR,colors[0])
+
+
+// store.getAll().then(v=>{
+//     console.log(v)
+// })
+
+//store.clearAll()
