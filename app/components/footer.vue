@@ -14,6 +14,7 @@
             <Info
                 :show="info"
                 :background = "background"
+                @dismiss ="opImageInfo"
             />
         </div>
 
@@ -23,7 +24,8 @@
         <Gallery 
             v-show="gallery"
             :images = "images"
-            @setImage ="setImage"          
+            @setImage ="setImage"  
+            @dismiss = "opGallery"        
         />
     </footer>
   

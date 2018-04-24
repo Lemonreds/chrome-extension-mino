@@ -13,11 +13,13 @@
             <Featrues/>     
             <Background/>            
             <More/>
-            
-            <span 
-                class="close"
-                @click.stop="close"            
-            >Dismiss.</span>   
+        
+            <div class="bottom">                  
+              <span 
+                  class="button"
+                  @click.stop="close"            
+              >Dismiss</span>   
+            </div>
 
 
         </div>  

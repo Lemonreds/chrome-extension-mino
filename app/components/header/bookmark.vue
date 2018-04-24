@@ -4,15 +4,18 @@
             @click="bookmarkHandler"
             class="material-icons"
             >{{option.icon}}</i>
-
+            
      <transition name="top">
         <div class="bookmark dialog"
             v-if="visible">     
+      
 
           <div class="search">
             <input type="text" autofocus 
             v-model="search_text"
             placeholder="search..."/> 
+            <span class="button" @click="close">Dismiss</span>
+            
           </div>   
 
           <div class="inner">
@@ -101,7 +104,7 @@ export default {
     changeCategory(id) {
       this.showSearch = false
       this.id = id     
-    }    
+    }
   },
   watch:{
     search_text(val){      
@@ -136,8 +139,9 @@ export default {
     height: 44px;
     padding-left: 160px;
     & > input{
-      width: 340px;
+      width: 360px;
       padding: 0 15px;
+      margin-right: 32px;
       line-height: 36px;
       border: 1px solid #eee;
       border-radius: 4px;

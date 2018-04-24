@@ -3,9 +3,12 @@
     <div class="gallery">
         <div class="bing">        
              <span>Images from</span>
-             <a target="_blank" href="https://bing.com/">Bing daily wallpaper.</a>
+             <a target="_blank" href="https://bing.com/">Bing daily wallpaper.</a>         
+             <span 
+                  class="button dismiss"
+                  @click.stop="dismiss"            
+              >Dismiss</span>     
         </div>
-
         <ul class="images">
             <li class="item"
                 v-for="image in images"
@@ -23,6 +26,7 @@
                  
             </li>
         </ul>  
+
     </div>
   </transition>
 </template>
@@ -49,6 +53,9 @@ export default {
       },
       download: function(url){
           download(url)    
+      },
+      dismiss: function(){
+          this.$emit("dismiss")
       }
   }
 }
@@ -70,6 +77,7 @@ export default {
     box-shadow: 0 2px 10px rgba(0,0,0,.2);    
     border-radius: 4px;  
     z-index: 99;
+
 }
 .bing{
     font-size: 18px;
@@ -82,6 +90,11 @@ export default {
         font-size: 14px;
         text-decoration: underline;
         color: rgba(0, 0, 0, 1)
+    }
+    & >.dismiss{
+        position: absolute;
+        top: 22px;
+        right: 24px;
     }
 }
 .images{    

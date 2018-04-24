@@ -1,13 +1,13 @@
 <template> 
      
     <div class="loves"
-        v-if="lovesites && lovesites.status"
+        v-if="commonsites && commonsites.status"
     >        
         <div class="site fadeIn"
             v-for="site in sites"
             :key="site.name">    
           <a :href="site.url" 
-            target="__blank">
+           target="_blank" >
             <img class="icon" :src="site.icon">          
           </a>          
         </div>  
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { getLovesites } from "../../api/lovesites.js"
+import { getCommonsites } from "../../api/commonsites.js"
 import { mapGetters } from 'vuex'
 
 
@@ -29,11 +29,11 @@ export default {
     },
     computed:{
          ...mapGetters([     
-            'lovesites'
+            'commonsites'
         ])       
     },   
     created() {          
-        getLovesites.then(sites => {
+        getCommonsites.then(sites => {
             this.sites = sites
         })       
     }

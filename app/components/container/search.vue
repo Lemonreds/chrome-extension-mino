@@ -110,12 +110,13 @@ input[type="text"]{
     width: 100%;
     height: 55px;
     padding: 8px;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: inherit;
     background: rgba(255,255,255,.8);
     outline: none;
     border: 1px solid #eee;    
     border-radius: 4px;
+    color: rgba(0,0,0,.84)
     
 }
 

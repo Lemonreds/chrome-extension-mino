@@ -15,12 +15,14 @@ export const defaluts = {
         status: true,
         storeKey: KEYS.SETTING_BOOKMARK
     },
-    lovesites: {
-        name: 'lovesites',
+    commonsites: {
+        name: 'commonsites',
         status: true,
-        storeKey: KEYS.SETTING_LOVESITES
+        storeKey: KEYS.SETTING_COMMONSITES
     }
 }
+
+
 /**
  * bing设置
  */
@@ -53,17 +55,17 @@ function fetch(key, value) {
 
 export const fetchApplication = fetch(KEYS.SETTING_APPLICATION, defaluts.application)
 export const fetchBookmark = fetch(KEYS.SETTING_BOOKMARK, defaluts.bookmark)
-export const fetchLovesites = fetch(KEYS.SETTING_LOVESITES, defaluts.lovesites)
+export const fetchCommonsites = fetch(KEYS.SETTING_COMMONSITES, defaluts.commonsites)
 export const fetchBing = fetch(KEYS.SETTING_BING, bing)
 
 
 // 获取上面3个的数据数组
-export const fetchFeatures = Promise.all([fetchApplication, fetchBookmark, fetchLovesites]).then(datas => {
+export const fetchFeatures = Promise.all([fetchApplication, fetchBookmark, fetchCommonsites]).then(datas => {
 
     let data = {
         application: datas[0],
         bookmark: datas[1],
-        lovesites: datas[2]
+        commonsites: datas[2]
     }
     return Promise.resolve(data)
 })
@@ -82,8 +84,8 @@ export const modify = (type, value) => {
         case 'bookmark':
             set(KEYS.SETTING_BOOKMARK, value, defaluts.bookmark)
             break;
-        case 'lovesites':
-            set(KEYS.SETTING_LOVESITES, value, defaluts.lovesites)
+        case 'commonsites':
+            set(KEYS.SETTING_COMMONSITES, value, defaluts.commonsites)
             break;
         case 'bing':
             set(KEYS.SETTING_BING, value, bing)

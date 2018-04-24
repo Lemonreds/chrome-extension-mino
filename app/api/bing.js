@@ -18,7 +18,6 @@ class Image {
     }
 }
 
-
 /**
  * format : 默认返回JSON格式
  * idx:   -1最多获取到明天,1 今天
@@ -133,6 +132,4 @@ export const getBing = new Promise((resolve, reject) => {
             images
         })  
     })
-
- 
 })

@@ -1,18 +1,18 @@
 <template>
   <div class="container">    
         <Search />
-        <LovesSites />    
+        <Sites />    
   </div>
 </template>
 
 <script>
 
 import Search from './container/search.vue'
-import LovesSites from './container/lovesites.vue'
+import Sites from './container/commonsite.vue'
 
 export default {  
   components: {
-    Search,LovesSites
+    Search,Sites
   }
 }
 </script>

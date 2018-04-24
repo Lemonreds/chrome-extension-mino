@@ -41,12 +41,14 @@ const defaults = [
         url: "https://www.bilibili.com/",
         icon: `${path}bilibili.png`
     }
+  
 ]
+
 /**
  * 获取所有lovesites
  * @return {Array}
  */
-export const getLovesites = store.getData(KEYS.LOVESITES).then(data => {
+export const getCommonsites = store.getData(KEYS.LOVESITES).then(data => {
 
     // 常用网站为空
     if (store.isEmptyData(data)) {

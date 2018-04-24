@@ -56,15 +56,12 @@ export default {
         margin: 20px auto;
         padding: 4px;
 
-        background: rgb(91, 192, 222);
-        border: 1px solid #eee;
+        background: #46b8da;
+        border: 1px solid #5bc0de;
         border-radius: 4px;
 
         cursor: pointer;
         transition: all .3s ease-in-out;
-        &:hover{
-            color: rgba(255,255,255,.84)
-        }   
     }
 }
 </style>

@@ -9,12 +9,26 @@
         <span
             v-for="(c,idx) in formatCopyRihgt"
             :key="idx">{{c}}</span>
+            
+            <div class="bottom">   
+              <span 
+                  class="button download"
+                  @click.stop="download(background.url)"
 
-    </div>
+              >Download</span>                
+              <span 
+                  class="button"
+                  @click.stop="dismiss"            
+              >Dismiss</span>   
+            </div>
+    </div> 
+
   </transition>
 </template>
 
 <script>
+import download from '../../api/download.js'
+
 export default {
     props:{
         show:{
@@ -37,6 +51,15 @@ export default {
             }
             return cpr
         }
+    },
+    methods:{
+        dismiss(){
+            this.$emit('dismiss')
+        },
+        download(url){
+            download(url)
+            this.dismiss()
+        }
     }
   
 }
@@ -45,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 .box{
     width: 400px;
-    height: 50vh;
+    height: 52vh;
     position: fixed;
     right: 5px;
     bottom: 60px;   
@@ -62,6 +85,12 @@ export default {
         display: block;
         margin: 2px 0 4px;
         color: #252b32;
+    }
+    & >.bottom{
+        margin-top: 20px;       
+        & .download{
+            margin-right: 8px;
+        }
     }
 }
 

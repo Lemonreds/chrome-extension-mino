@@ -1,6 +1,6 @@
 <template>
     <span class="choose" 
-          @click="modify"
+          @click="_emit"
          :class="initial ? styles.active : styles.inactive">
         <span class="cirlce"/>
     </span>
@@ -27,7 +27,7 @@ export default {
      }
   },  
   methods:{
-      modify(){
+      _emit(){
            // 向父组件传递事件
           this.$emit('hanlder',this.id)
       }

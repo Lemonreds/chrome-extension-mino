@@ -13,7 +13,7 @@
                 </div>    
             </div>  
             <div class="bottom">
-                <span  @click="close">Dismiss</span>                
+                <span class="button" @click="dismiss">Dismiss</span>                
             </div>  
         </div>
       </transition>
@@ -31,7 +31,7 @@ export default {
     changeEngine(index) {
         this.$emit('changeEngine',index)
     },
-    close() {
+    dismiss() {
         this.$emit('closeEngines')
     }
   }
@@ -48,7 +48,7 @@ export default {
   margin-top: -100px;
   margin-left: -210px;
   & >p{
-    color: rgba(0,0,0,.1)
+    color: rgba(0,0,0,.8)
   }
   & > .group {
     margin: 26px 0;
@@ -70,10 +70,11 @@ export default {
     }
   }
   & >.bottom{
-      margin: 10px 4px;
+      margin: 10px 0 0 ;
       font-size: 14px;
       text-align: right;
       cursor: pointer;
+
   }
 }
 </style>
