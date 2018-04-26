@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="background"
+    <div    class="background"
             v-if="bing && bing.status"            
-            :style="backgroundImage"/>
+            :style="backgroundImage"           
+            />
     <div class="background" 
             v-else :style="setBackgroundColor"     
     > </div>
@@ -12,20 +13,26 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { saveBase64}  from '../../api/base64.js'
 
 export default {
     props:{
         background:{
             type: Object,
             required: true
-        }   
-    },      
+        }
+    },        
     computed:{       
         backgroundImage :function(){
-            if(this.background){
+            if(this.bing.inital){
+                return {
+                    backgroundImage: `url(${this.background.base64})`
+                } 
+            }else{
+                
                 return {
                     backgroundImage: `url(${this.background.url})`
-                }      
+                }   
             }
         },
         setBackgroundColor:function(){
@@ -36,7 +43,7 @@ export default {
            }
         },
         ...mapGetters(['bing','color'])
-    } 
+    }
   
 }
 </script>

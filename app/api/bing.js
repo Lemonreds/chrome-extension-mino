@@ -1,6 +1,6 @@
 import * as store from './localstore.js'
 import KEYS from './storekeys'
-
+import {storeBase64,fetchBase64} from './base64.js'
 
 // 图片对象的具体信息
 /**
@@ -34,7 +34,7 @@ let defaults = {
  * value: 对象数组 获取失败返回 []
  *        对象包含图片信息 
  */
-const getBingImages = options => {
+const BingAPI = options => {
 
     let xhr = new XMLHttpRequest(),
         data, config, result, id
@@ -80,18 +80,27 @@ const getBingImages = options => {
  * 获取上一次设置的壁纸image对象
  * @return {Image}
  */
-const getBackground = () => {
-    return new Promise((resolve, reject) => {
-        store.getData(KEYS.BACKGROUND).then(data => {
-            if (store.isEmptyData(data)) {
-                // 获取失败返回 undefined
-                resolve(undefined)
-            } else {
-                resolve(data[KEYS.BACKGROUND])
-            }
-        })
+export const getBackground = new Promise((resolve, reject) => {
+
+    store.getData(KEYS.BACKGROUND).then(data => {
+        if (store.isEmptyData(data)) {
+            //  获取失败(可能是第一次启动) 
+            //  设置最新的为默认壁纸
+            BingAPI({
+                n: 1
+            }).then(data => {
+                let current = data[0]
+                saveBackground(current)
+                resolve(current)
+            })
+        } else {
+            data[KEYS.BACKGROUND].base64 = fetchBase64()
+            resolve(data[KEYS.BACKGROUND])
+        }
     })
-}
+})
+
+
 
 
 /**
@@ -99,10 +108,20 @@ const getBackground = () => {
  * @param {Image} image 
  */
 export const saveBackground = image => {
+
     store.storeData({
         [KEYS.BACKGROUND]: image
     })
+
+    // TODO 2018/04/26
+    // 不设置计数器会重复发送 2个http请求
+    // 导致写入 base64 数据时候 阻塞太久 首页白屏的问题
+    // 目前还没有解决方法 只能用个暴力的...
+    setTimeout(() => {
+        storeBase64(image.url)
+    }, 1000)
 }
+
 
 
 /**
@@ -112,24 +131,10 @@ export const saveBackground = image => {
  * 
  * @return {Promise.resolve(Image,Array[Images])}
  */
-export const getBing = new Promise((resolve, reject) => {
-
-    let background
-
-    getBackground().then(data => {
-        background = data
-    })
-
-    getBingImages({
+export const getBingImages = new Promise((resolve,reject)=>{
+    BingAPI({
         n: 8
     }).then(images => {
-        // 如果没有默认的背景图片设置     
-        if (typeof background === 'undefined') {
-            background = images[7]
-        }
-        resolve({
-            background,
-            images
-        })  
+        resolve(images)
     })
 })

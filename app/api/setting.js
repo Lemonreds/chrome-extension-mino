@@ -22,13 +22,13 @@ export const defaluts = {
     }
 }
 
-
 /**
  * bing设置
  */
 export const bing = {
     name: 'bing',
-    status: true
+    status: true,
+    inital : true 
 }
 
 /**

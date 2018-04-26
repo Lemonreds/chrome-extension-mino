@@ -68,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 .box{
     width: 400px;
-    height: 52vh;
+    min-height: 53vh;
     position: fixed;
     right: 5px;
     bottom: 60px;   
@@ -87,7 +87,7 @@ export default {
         color: #252b32;
     }
     & >.bottom{
-        margin-top: 20px;       
+        margin-top: 15px;       
         & .download{
             margin-right: 8px;
         }

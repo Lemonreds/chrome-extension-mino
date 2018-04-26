@@ -6,6 +6,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as Setting from '../api/setting.js'
+import * as BingAPI from '../api/bing.js'
 
 const state = {
     featrues: null, // 包括application bookmark lovasites 的设置  application{ name "application", status true
@@ -40,15 +41,16 @@ const getters = {
 
 // mutation 的类型
 const types = {
-    SET_BING_VALUE: 'SET_BING_VALUE',
+    SET_BING_STATUS: 'SET_BING_STATUS',
     SET_FEATRUES_VALUE: 'SET_FEATRUES_VALUE',
     SET_COLOR: 'SET_COLOR'
 }
 // mutation
 const mutations = {
     // 开启/关闭 必应背景图片
-    [types.SET_BING_VALUE](state, value) {
-        state.bing.status = value
+    [types.SET_BING_STATUS](state, status) {
+        state.bing.status = status
+        state.bing.inital = false
     },
     // 开启/关闭 Featrues 设置
     [types.SET_FEATRUES_VALUE](state, {type,status}) {
@@ -75,18 +77,20 @@ const actions = {
     * 修改 Bing背景图片
     * @param {Boolean} status 
     */
-    moidfyBing({ commit, state }, value) { 
+    moidfyBing({ commit, state }, image) { 
         // 修改vuex的值
-        commit(types.SET_BING_VALUE, value)
+        commit(types.SET_BING_STATUS, true)
         // 存储新的数据
-        Setting.modify('bing', value)
+        Setting.modify('bing', true)
+         // local store        
+        BingAPI.saveBackground(image)     
     },
     // 设置背景颜色
     modifyColor({ commit, state }, value) {
         // 修改vuex的值
         commit(types.SET_COLOR, value)   
         // 同时更新bing 设置为不可见
-        commit(types.SET_BING_VALUE, false)  
+        commit(types.SET_BING_STATUS, false)  
         // 存储新的数据
         Setting.setColor(value)      
     }

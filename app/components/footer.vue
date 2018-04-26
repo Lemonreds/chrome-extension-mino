@@ -50,10 +50,12 @@ export default {
       }
   },
   created(){
-     BingAPI.getBing.then( data =>{
-         this.background = data.background
-         this.images = data.images
-     })
+     BingAPI.getBingImages.then( data =>{       
+         this.images = data
+     }),
+     BingAPI.getBackground.then( data =>{       
+         this.background = data     
+    })
   },
   components:{
       Background,Gallery,Info
@@ -76,12 +78,7 @@ export default {
           this.$set(this.background,"date",image.date)
           this.$set(this.background,"copyright",image.copyright)
           // modify vuex
-          this.$store.dispatch('moidfyBing',{
-                name: 'bing',
-                value: true
-          })
-          // local store
-          BingAPI.saveBackground(image)
+          this.$store.dispatch('moidfyBing',image)        
       }
   }
 }
