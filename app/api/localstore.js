@@ -61,3 +61,9 @@ export const isEmptyData = obj => {
     return false
 }
 
+
+//  clearAll()
+
+// getAll().then( v=>{
+//     console.log(v)
+// })

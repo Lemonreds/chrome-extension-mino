@@ -6,8 +6,7 @@
         <div class="site fadeIn"
             v-for="site in sites"
             :key="site.name">    
-          <a :href="site.url" 
-           target="_blank" >
+          <a :href="site.url" >
             <img class="icon" :src="site.icon">          
           </a>          
         </div>  
@@ -43,24 +42,28 @@ export default {
 <style lang="scss" scoped>
 .loves {
     width: 640px;
-    margin-top: 40px;
+    margin-top: 34px;
     
     display: flex;
     flex-wrap: wrap;
     z-index: 4;
+    &>.site:nth-child(7n){
+       margin-right: 0
+    }
     &>.site{
         display: inline-block;
-        width: 72px;
-        height: 72px;
-        margin-right: 18px;
-        padding: 10px 0;
+        width: 70px;
+        height: 70px;
+        margin-right: 22px;
+        margin-bottom: 24px;
+        padding: 8px 0;
         border: 1px solid #eee;
         background: rgba(255,255,255,.84);
 
         display: flex;
         justify-content: center;
         align-items: center;   
-        border-radius: 4px;     
+        border-radius: 3px;     
         & >a{
 
             &>.icon{

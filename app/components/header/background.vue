@@ -48,8 +48,8 @@ export default {
                 background : color 
             }
         },
-        bingHanlder(id){     
-            this.$store.dispatch('moidfyBing',!this.bing.status)
+        bingHanlder(){     
+            this.$store.dispatch('modifyBackgroundVisible',!this.bing.status)
         },
         colorHanlder(color){
             this.$store.dispatch('modifyColor',color)

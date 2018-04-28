@@ -85,6 +85,7 @@ export default {
         display: block;
         margin: 2px 0 4px;
         color: #252b32;
+        padding: 0 2px;
     }
     & >.bottom{
         margin-top: 15px;       

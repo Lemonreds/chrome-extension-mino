@@ -76,6 +76,7 @@ const BingAPI = options => {
 }
 
 
+
 /**
  * 获取上一次设置的壁纸image对象
  * @return {Image}
@@ -91,9 +92,11 @@ export const getBackground = new Promise((resolve, reject) => {
             }).then(data => {
                 let current = data[0]
                 saveBackground(current)
+                current.base64 = fetchBase64()
                 resolve(current)
             })
         } else {
+            //console.log(data[KEYS.BACKGROUND])
             data[KEYS.BACKGROUND].base64 = fetchBase64()
             resolve(data[KEYS.BACKGROUND])
         }

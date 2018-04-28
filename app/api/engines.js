@@ -21,6 +21,11 @@ export const allEngines = [{
     action: "https://search.yahoo.com/search?",
     inputName: "p"
 }, {
+    name: "Stackoverflow",
+    icon: "./static/engines/stackoverflow.png",
+    action: "https://stackoverflow.com/search?",
+    inputName: "q"
+}, {
     name: "Baidu",
     icon: "./static/engines/baidu.png",
     action: "https://www.baidu.com/s?",
@@ -34,7 +39,7 @@ export const allEngines = [{
  */
 export const getEngineIndx = store.getData(KEYS.ENGINIE).then(data => {
 
-    
+
     // 没有默认的搜索引擎 
     // 设置 谷歌
     if (store.isEmptyData(data)) {

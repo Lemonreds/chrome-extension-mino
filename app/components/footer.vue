@@ -78,7 +78,7 @@ export default {
           this.$set(this.background,"date",image.date)
           this.$set(this.background,"copyright",image.copyright)
           // modify vuex
-          this.$store.dispatch('moidfyBing',image)        
+          this.$store.dispatch('modifyBackground',image)        
       }
   }
 }

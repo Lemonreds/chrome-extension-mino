@@ -42,6 +42,7 @@ const getters = {
 // mutation 的类型
 const types = {
     SET_BING_STATUS: 'SET_BING_STATUS',
+    SET_BING_INITAL : 'SET_BING_INITAL',
     SET_FEATRUES_VALUE: 'SET_FEATRUES_VALUE',
     SET_COLOR: 'SET_COLOR'
 }
@@ -49,8 +50,10 @@ const types = {
 const mutations = {
     // 开启/关闭 必应背景图片
     [types.SET_BING_STATUS](state, status) {
-        state.bing.status = status
-        state.bing.inital = false
+        state.bing.status = status       
+    },
+    [types.SET_BING_INITAL](state, val){
+        state.bing.inital = val
     },
     // 开启/关闭 Featrues 设置
     [types.SET_FEATRUES_VALUE](state, {type,status}) {
@@ -77,13 +80,20 @@ const actions = {
     * 修改 Bing背景图片
     * @param {Boolean} status 
     */
-    moidfyBing({ commit, state }, image) { 
+   modifyBackground({ commit, state }, image) { 
         // 修改vuex的值
         commit(types.SET_BING_STATUS, true)
+        commit(types.SET_BING_INITAL, false)
         // 存储新的数据
         Setting.modify('bing', true)
          // local store        
         BingAPI.saveBackground(image)     
+    },
+    modifyBackgroundVisible({ commit, state }, status){
+        commit(types.SET_BING_STATUS, status) 
+        // 存储新的数据   
+        Setting.modify('bing', status)
+        
     },
     // 设置背景颜色
     modifyColor({ commit, state }, value) {

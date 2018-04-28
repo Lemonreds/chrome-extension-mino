@@ -24,16 +24,12 @@ export default {
     },        
     computed:{       
         backgroundImage :function(){
-            if(this.bing.inital){
-                return {
-                    backgroundImage: `url(${this.background.base64})`
-                } 
-            }else{
-                
-                return {
-                    backgroundImage: `url(${this.background.url})`
-                }   
-            }
+            let style = {}
+
+            this.bing.inital ? style.backgroundImage = `url(${this.background.base64})`
+                             : style.backgroundImage = `url(${this.background.url})`
+
+            return style
         },
         setBackgroundColor:function(){
            

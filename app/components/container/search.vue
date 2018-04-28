@@ -1,6 +1,6 @@
 <template> 
     <div class="search">      
-        <div  class="icon "
+        <div class="icon"
                 @click="dialogVisible">
             <img 
                 :src="current.icon"
@@ -64,6 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .search {
+    margin-top: 94px;
     width: 640px;
     height: 70px;
     padding: 0 2px;
@@ -109,15 +110,14 @@ input[type="text"]{
     display: block;
     width: 100%;
     height: 55px;
-    padding: 8px;
-    font-size: 17px;
+    padding: 8px 12px;
+    font-size: 16px;
     font-weight: inherit;
-    background: rgba(255,255,255,.8);
+    background: rgba(255,255,255,.84);
     outline: none;
     border: 1px solid #eee;    
-    border-radius: 4px;
-    color: rgba(0,0,0,.84)
-    
+    border-radius: 2px;
+    color: rgba(0,0,0,.74)   
 }
 
 </style>
