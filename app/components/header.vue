@@ -1,7 +1,7 @@
 <template>
     <header class='header'>
         <div class="options">    
-           
+        
             <Application
                     :option="options.application"
                     :visible="dialog.application"  
@@ -16,7 +16,6 @@
                     @bookmarkHandler="handler('bookmark')"
                     @close="closeDialog" 
             />     
-
              <Setting                     
                     :option="options.setting"
                     :visible="dialog.setting" 

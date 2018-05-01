@@ -42,7 +42,10 @@ export default {
     },
     computed:{
         formatDate: function (){    
-            return this.background.date
+            let date = this.background.date
+            if(date){
+                 return `${date.substring(0,4)}/${date.substring(4,6)}/${date.substring(6,8)}`
+            }            
         },
         formatCopyRihgt: function (){
             let cpr = this.background.copyright

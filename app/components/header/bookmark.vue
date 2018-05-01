@@ -7,8 +7,7 @@
             
      <transition name="top">
         <div class="bookmark dialog"
-            v-if="visible">     
-      
+            v-if="visible">          
 
           <div class="search">
             <input type="text" autofocus 
