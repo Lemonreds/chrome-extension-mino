@@ -1,7 +1,7 @@
 <template>
     <span class="choose" 
           @click="_emit"
-         :class="initial ? styles.active : styles.inactive">
+         :class="initial ? 'active' : 'inactive'">
         <span class="cirlce"/>
     </span>
 </template>
@@ -19,16 +19,11 @@ export default {
   },
   data(){
      return{    
-          status: true,
-          styles:{
-            active: 'active',
-            inactive: 'inactive'            
-          }          
+          status: true  
      }
   },  
   methods:{
       _emit(){
-           // 向父组件传递事件
           this.$emit('hanlder',this.id)
       }
   }
@@ -61,12 +56,10 @@ export default {
     transform: translateX(0);  
   }
 }
-
 .inactive{
   background: #d9534f;  
   & >.cirlce{
     transform: translateX(-20px);     
   }
 }
-
 </style>

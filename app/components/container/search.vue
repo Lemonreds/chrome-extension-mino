@@ -1,5 +1,7 @@
 <template> 
-    <div class="search">      
+    <div class="search"
+        :class = "(commonsites && commonsites.status) ? styles.hasCommonsites : styles.noCommonsites "
+    >      
         <div class="icon"
                 @click="dialogVisible">
             <img 
@@ -26,15 +28,20 @@
 <script>
 
 import * as engineAPI from '../../api/engines'
-
 import Engines from './engines.vue'
+
+import {mapGetters} from 'vuex'
 
 export default {  
     data(){
         return{
             engines : null,
             current : {},
-            enginesDialog: false      
+            enginesDialog: false,
+            styles:{
+                hasCommonsites : '',
+                noCommonsites: "noCommonsites"
+            }
         }
     },
     created(){
@@ -43,7 +50,12 @@ export default {
         engineAPI.getEngineIndx.then( idx =>{
             this.current = this.engines[idx]
         })
-    },
+    },   
+    computed:{
+         ...mapGetters([     
+            'commonsites'
+        ])       
+    },  
     components:{
         Engines
     },
@@ -64,13 +76,18 @@ export default {
 
 <style lang="scss" scoped>
 .search {
-    margin-top: 94px;
     width: 640px;
     height: 70px;
     padding: 0 2px;
 
     display: flex;
     align-items: center;
+    
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
     & > .icon{
         width: 55px;
         height: 55px;
@@ -103,6 +120,10 @@ export default {
             height: 100%;
         }
     }  
+}
+.noCommonsites{
+    top: 48%;
+    left: 50%;
 }
 
 

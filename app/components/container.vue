@@ -22,9 +22,6 @@ export default {
   width: 100%;
   height: calc(100vh - 120px);
   min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;  
+  position: relative;
 }
 </style>

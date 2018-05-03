@@ -42,11 +42,16 @@ export default {
 <style lang="scss" scoped>
 .loves {
     width: 640px;
-    margin-top: 34px;
+    margin-top: 36px;
     
     display: flex;
     flex-wrap: wrap;
-    z-index: 4;
+    z-index: 4; 
+
+    position: absolute;
+    top: 64%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     &>.site:nth-child(7n){
        margin-right: 0
     }

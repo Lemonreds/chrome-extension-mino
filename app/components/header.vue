@@ -1,7 +1,6 @@
 <template>
-    <header class='header'>
-        <div class="options">    
-        
+    <header class='header'>       
+        <div class="options">      
             <Application
                     :option="options.application"
                     :visible="dialog.application"  
@@ -24,6 +23,7 @@
             />         
           
         </div>
+         <span class="time">{{time}}</span>
     </header>
 </template>
 
@@ -54,7 +54,8 @@ export default {
                 application: false,
                 bookmark: false,
                 setting: false
-            }           
+            },
+            date : new Date()  
         }
     },    
     components:{
@@ -64,7 +65,16 @@ export default {
          ...mapGetters([
              'application',     
              'bookmark'
-        ])       
+        ]),
+        time(){
+            setInterval(()=>{
+                this.date = new Date()
+            },1000)
+            let hour = this.date.getHours(),
+                 mins = this.date.getMinutes()
+            if(mins<10) mins = '0' + mins
+           return  hour + ":" + mins
+        } 
     },  
     methods:{
         handler(name){                
@@ -99,11 +109,18 @@ export default {
             height: 32px;
             margin: 0 4px;
             line-height: 32px; 
-          
-            cursor: pointer;      
-                
+
+            cursor: pointer;                      
         }
     }
 }
-
+.time{
+    width: 40px;
+    height: 100%;
+    display: inline-block;
+    margin: 0 12px;
+    color: #fff;
+    line-height: 38px;
+    letter-spacing: .5px;
+}
 </style>
