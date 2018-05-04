@@ -25,7 +25,7 @@ class Image {
  */
 let defaults = {
     format: 'js',
-    idx: -1,
+    idx: 0,
     n: 1
 }
 

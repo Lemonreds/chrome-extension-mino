@@ -4,6 +4,7 @@ a new tab page for chrome extension,based on vue,vuex.
 
 ## Featrues
 - concise.
+- pure bakcground.
 - quick access to your bookmark.
 - support various search engines.
 - support Bing daily wallpaper.

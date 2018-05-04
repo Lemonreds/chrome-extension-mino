@@ -6,17 +6,20 @@ import KEYS from './storekeys.js'
  */
 export const defaluts = {
     application: {
-        name: 'Application',
+        name: 'application',
+        text: 'Application',
         status: true,
         storeKey: KEYS.SETTING_APPLICATION
     },
     bookmark: {
-        name: 'Bookmarks',
+        name: 'bookmark',
+        text: 'Bookmarks',
         status: true,
         storeKey: KEYS.SETTING_BOOKMARK
     },
     commonsites: {
-        name: 'CommonSites',
+        name: 'commonsites',
+        text: 'CommonSites',
         status: false,
         storeKey: KEYS.SETTING_COMMONSITES
     }

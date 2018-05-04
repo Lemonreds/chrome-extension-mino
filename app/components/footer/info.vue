@@ -79,6 +79,7 @@ export default {
     border: 1px solid #eee;
     border-radius: 4px;
     z-index: 99;
+    padding: 0 0 20px; 
     & >img{    
         width: 100%;
         height: 34vh;

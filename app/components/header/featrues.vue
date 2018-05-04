@@ -6,7 +6,7 @@
                 class="item"
                 v-for="(item,idx) in featrues"
                 :key="item.name">   
-                <span>{{item.name}}</span>
+                <span>{{item.text}}</span>
                 <Choose
                     :id = "idx"
                     :initial="item.status"
