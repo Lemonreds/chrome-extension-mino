@@ -47,8 +47,11 @@ export default {
   height: 200px;
   margin-top: -100px;
   margin-left: -210px;
+  &::before{
+    display: none;
+  }
   & >p{
-    color: rgba(0,0,0,.8)
+    color: #46505e;
   }
   & > .group {
     margin: 26px 0;

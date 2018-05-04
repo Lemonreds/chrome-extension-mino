@@ -46,7 +46,7 @@ export default {
     
     display: flex;
     flex-wrap: wrap;
-    z-index: 4; 
+ 
 
     position: absolute;
     top: 64%;

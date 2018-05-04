@@ -6,18 +6,18 @@ import KEYS from './storekeys.js'
  */
 export const defaluts = {
     application: {
-        name: 'application',
+        name: 'Application',
         status: true,
         storeKey: KEYS.SETTING_APPLICATION
     },
     bookmark: {
-        name: 'bookmark',
+        name: 'Bookmarks',
         status: true,
         storeKey: KEYS.SETTING_BOOKMARK
     },
     commonsites: {
-        name: 'commonsites',
-        status: true,
+        name: 'CommonSites',
+        status: false,
         storeKey: KEYS.SETTING_COMMONSITES
     }
 }
@@ -117,8 +117,8 @@ function set(key, status, source) {
 /**
  * 默认颜色
  */
-export const colors = ['#3b5998','#5bc0de','#5f7ec1','#2b6b73','#337ab7','#f0ad4e',
-                        '#3b987a','#cdbfe3','#d9534f', '#983b59','#987a3b','#88983b','#674a34']
+export const colors = ['#3b5998','#5f7ec1','#2b6b73','#337ab7','#f0ad4e',
+                        '#3b987a','#cdbfe3','#d9534f', '#983b59','#987a3b','#88983b','#674a34','#67758a']
                         
 /**
  * 存储颜色到本地存储

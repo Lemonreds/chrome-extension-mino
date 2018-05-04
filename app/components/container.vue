@@ -23,5 +23,6 @@ export default {
   height: calc(100vh - 120px);
   min-height: 50vh;
   position: relative;
+  z-index: 1;
 }
 </style>

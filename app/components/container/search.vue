@@ -87,7 +87,7 @@ export default {
     top: 44%;
     left: 50%;
     transform: translate(-50%,-50%);
-    
+    z-index: inherit;
     & > .icon{
         width: 55px;
         height: 55px;
@@ -132,6 +132,7 @@ input[type="text"]{
     width: 100%;
     height: 55px;
     padding: 8px 12px;
+    font-family: inherit;
     font-size: 16px;
     font-weight: inherit;
     background: rgba(255,255,255,.84);

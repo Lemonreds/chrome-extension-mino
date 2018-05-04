@@ -70,10 +70,12 @@ export default {
             setInterval(()=>{
                 this.date = new Date()
             },1000)
-            let hour = this.date.getHours(),
+            let hours = this.date.getHours(),
                  mins = this.date.getMinutes()
+                
+            if(hours<10) hours = '0' + hours 
             if(mins<10) mins = '0' + mins
-           return  hour + ":" + mins
+            return  hours + ":" + mins
         } 
     },  
     methods:{

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div    class="background"
+    <div    class="background fade"
             v-if="bing && bing.status"            
             :style="backgroundImage"           
             />
@@ -13,7 +13,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { saveBase64}  from '../../api/base64.js'
 
 export default {
     props:{
@@ -26,7 +25,7 @@ export default {
         backgroundImage :function(){
             let style = {}
 
-            this.bing.inital ? style.backgroundImage = `url(${this.background.base64})`
+            this.bing.inital && this.background.base64 ? style.backgroundImage = `url(${this.background.base64})`
                              : style.backgroundImage = `url(${this.background.url})`
 
             return style
@@ -54,6 +53,23 @@ export default {
     z-index: -1;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;     
+    
 }
+
+@keyframes fade{
+    from{       
+         opacity: 0.1
+    }
+    to{       
+         opacity: 1    
+    }
+}
+
+.fade{
+    animation-fill-mode: forwards;
+    animation-name: fade;
+    animation-duration: 0.2s 
+}
+
 </style>

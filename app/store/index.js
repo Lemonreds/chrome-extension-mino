@@ -103,6 +103,8 @@ const actions = {
         commit(types.SET_BING_STATUS, false)  
         // 存储新的数据
         Setting.setColor(value)      
+        // 存储新的数据   
+        Setting.modify('bing', false)
     }
 }
 
