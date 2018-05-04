@@ -83,17 +83,16 @@ const actions = {
    modifyBackground({ commit, state }, image) { 
         // 修改vuex的值
         commit(types.SET_BING_STATUS, true)
-        commit(types.SET_BING_INITAL, false)
+        commit(types.SET_BING_INITAL, false)     
+        // local store        
+        BingAPI.saveBackground(image)     
         // 存储新的数据
         Setting.modify('bing', true)
-         // local store        
-        BingAPI.saveBackground(image)     
     },
     modifyBackgroundVisible({ commit, state }, status){
         commit(types.SET_BING_STATUS, status) 
         // 存储新的数据   
-        Setting.modify('bing', status)
-        
+        Setting.modify('bing', status)        
     },
     // 设置背景颜色
     modifyColor({ commit, state }, value) {

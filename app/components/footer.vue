@@ -73,12 +73,13 @@ export default {
           this.info = !this.info 
       },
       setImage(image){
+          // modify vuex
+          this.$store.dispatch('modifyBackground',image)   
           // set this.
           this.$set(this.background,"url",image.url)
           this.$set(this.background,"date",image.date)
           this.$set(this.background,"copyright",image.copyright)
-          // modify vuex
-          this.$store.dispatch('modifyBackground',image)        
+             
       }
   }
 }

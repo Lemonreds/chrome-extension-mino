@@ -7,18 +7,18 @@ import * as store from './localstore.js'
 const KEY_BACKGROUND = 'background'
 
 export const storeBase64 = url => {
-
+    
+    
     return new Promise((resolve,reject)=>{
         let xhr = new XMLHttpRequest()
         let fr = new FileReader()
         xhr.open("GET", url, true)
         xhr.responseType = "blob"        
-        xhr.send(null)  
-
-        xhr.onload = () => {
-            fr.onload = e => {           
+        xhr.send(null) 
+        xhr.onload = () => { 
+            fr.onload = e => {       
                 localStorage.setItem(KEY_BACKGROUND, e.target.result)   
-                console.log('store background ok')
+                console.log('Store OK')
                 resolve(e.target.result)             
             }
             fr.readAsDataURL(xhr.response)            

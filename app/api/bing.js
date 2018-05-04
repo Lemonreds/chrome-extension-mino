@@ -25,7 +25,7 @@ class Image {
  */
 let defaults = {
     format: 'js',
-    idx: 0,
+    idx: -1,
     n: 1
 }
 
@@ -122,7 +122,7 @@ export const saveBackground = image => {
     // 目前还没有解决方法 只能用个暴力的...
     setTimeout(() => {
         storeBase64(image.url)
-    }, 1000)
+    }, 300)
 }
 
 
