@@ -95,14 +95,22 @@ export const getBackground = new Promise((resolve, reject) => {
                 current.base64 = fetchBase64()
                 resolve(current)
             })
-        } else {
-            //console.log(data[KEYS.BACKGROUND])
-            data[KEYS.BACKGROUND].base64 = fetchBase64()
+        } else {            
+            let base64 = fetchBase64()
+            if(base64 === null){
+                // 存入新的壁纸时 （写入本地base64时)
+                // 页面关闭或者刷新了
+                // 重新写入base64
+                setTimeout(() => {
+                    storeBase64( data[KEYS.BACKGROUND].url)
+                }, 300)
+            }else{
+                data[KEYS.BACKGROUND].base64 = fetchBase64()
+            }  
             resolve(data[KEYS.BACKGROUND])
         }
     })
 })
-
 
 
 

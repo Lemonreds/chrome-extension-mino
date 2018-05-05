@@ -8,7 +8,8 @@ const KEY_BACKGROUND = 'background'
 
 export const storeBase64 = url => {
     
-    
+    localStorage.clear(KEY_BACKGROUND)
+
     return new Promise((resolve,reject)=>{
         let xhr = new XMLHttpRequest()
         let fr = new FileReader()
