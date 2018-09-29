@@ -11,6 +11,6 @@ a new tab page for chrome extension,based on vue,vuex.
 
 ## Preview
 
-![](https://github.com/Lemonreds/chrome-extension-mino/blob/master/preview/main.png)
-![](https://github.com/Lemonreds/chrome-extension-mino/blob/master/preview/gallery.png)
-![](https://github.com/Lemonreds/chrome-extension-mino/blob/master/preview/setting.png)
+![](https://github.com/Lemonreds/chrome-extension-mino/blob/master/preview/01.jpg)
+![](https://github.com/Lemonreds/chrome-extension-mino/blob/master/preview/02.jpg)
+![](https://github.com/Lemonreds/chrome-extension-mino/blob/master/preview/03.jpg)
