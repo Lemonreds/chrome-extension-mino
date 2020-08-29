@@ -1,13 +1,12 @@
 ## chrome-extension-mino
 
-a new tab page for chrome extension,based on vue,vuex.
+基于Vuejs的chrome新标签页应用。
 
 ## Featrues
-- concise.
-- pure bakcground.
-- quick access to your bookmark.
-- support various search engines.
-- support Bing daily wallpaper.
+- 简洁.
+- 支持纯色背景。
+- 支持书签。
+- Bing每日壁纸自动更新。
 
 ## Preview
 
